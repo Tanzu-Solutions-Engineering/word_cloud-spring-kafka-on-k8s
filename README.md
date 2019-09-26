@@ -25,7 +25,7 @@ Here is the topology of the application
 1. [Word Count Stream](./wordcount-stream) - Uses Kstream to read from “lines” topic, performs stateful transformations i.e. count words, send output to “counts” topic on Kafka and stores the output in a PCC region “Words_Count”
 1. [Windowed Word Count Stream](./windowed-wordcount-stream) - Uses Kstream to read from “lines” topic, performs stateful transformations using tumbling window i.e. windowed count words, send output to “windowed counts” topic on Kafka and stores the output in a PCC region “Words_Count_Windowed”
 1. [Word cloud API](./wordcount-api) - Provides API access to data from PCC regions “Words_Count” and “Words_Count_Windowed”
-1. Word cloud dashboard (TBD) - UI dashboard that uses Word cloud API
+1. [Web UI](./web-ui) - UI dashboard that uses Word cloud API
 
 ### Gemfire/PCC regions
 1. Words_Count - partitioned cache designed to hold real-time aggregate word count, evicts word entries if no write/update in 60 sec
