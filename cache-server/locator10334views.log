@@ -8,3 +8,6 @@
 
 [info 2019/09/26 17:54:18.802 EDT <Cache Server Load Polling Thread> tid=0x46] server count: 1 connected client count: 1 client subscription queue count: 1
   current servers : 192.168.7.185(CloudCacheServerApp:28236)<ec><v0>:1024 
+
+[info 2019/09/26 18:54:32.469 EDT <Cache Server Load Polling Thread> tid=0x46] server count: 1 connected client count: 4 client subscription queue count: 4
+  current servers : 192.168.7.185(CloudCacheServerApp:28236)<ec><v0>:1024 
