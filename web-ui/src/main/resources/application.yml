@@ -1,0 +1,23 @@
+server.port: 8084
+spring:
+  application:
+    name: 'wordcloud-webui'
+  thymeleaf:
+    cache: false
+  security:
+    user:
+      name: Corbs
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    io.pace: DEBUG
+words:
+  text:
+    length: 10
+  frame:
+    size: 100
+

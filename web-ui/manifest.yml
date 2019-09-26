@@ -1,0 +1,5 @@
+---
+applications:
+- name: wordcloud-webui
+  memory: 1G
+  path: target/wordcloud-webui-1.0.0.SNAP.jar

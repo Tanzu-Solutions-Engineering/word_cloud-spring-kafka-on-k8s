@@ -1,0 +1,39 @@
+
+spring.cloud.stream.kstream.binder.configuration.commit.interval.ms: 1000
+spring.cloud.stream.kstream.binder.configuration:
+  default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+  default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        LINES_IN:
+          destination: lines
+        COUNTS_OUT:
+          destination: counts
+
+
+#      kafka:
+#        streams:
+#          bindings:
+#            COUNTS_OUT:
+#              producer:
+#                useNativeEncoding: true
+#                key-serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#                value-serde: org.apache.kafka.common.serialization.Serdes$LongSerde
+
+  application:
+    name: wordcount
+#    cloud:
+#      stream:
+#        kafka:
+#          binder:
+#            brokers: bitnami-kafka-0.bitnami-kafka-headless.default.svc.kafka.cloudpandit.online:9092
+#          streams:
+#            binder:
+#              brokers: bitnami-kafka-0.bitnami-kafka-headless.default.svc.kafka.cloudpandit.online:9092
+#              configuration:
+#                zkNodes: bitnami-kafka-zookeeper-0.bitnami-kafka-zookeeper-headless.default.svc.kafka.cloudpandit.online:2181
+server:
+  port: 8083

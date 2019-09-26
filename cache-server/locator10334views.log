@@ -1,0 +1,10 @@
+
+[info 2019/09/26 17:26:23.379 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.7.185(CloudCacheServerApp:24051)<ec><v0>:1024|0] members: [192.168.7.185(CloudCacheServerApp:24051)<ec><v0>:1024{lead}]
+
+[info 2019/09/26 17:27:30.948 EDT <Cache Server Load Polling Thread> tid=0x47] server count: 1 connected client count: 0 client subscription queue count: 0
+  current servers : 192.168.7.185(CloudCacheServerApp:24051)<ec><v0>:1024 
+
+[info 2019/09/26 17:53:45.709 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.7.185(CloudCacheServerApp:28236)<ec><v0>:1024|0] members: [192.168.7.185(CloudCacheServerApp:28236)<ec><v0>:1024{lead}]
+
+[info 2019/09/26 17:54:18.802 EDT <Cache Server Load Polling Thread> tid=0x46] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.7.185(CloudCacheServerApp:28236)<ec><v0>:1024 

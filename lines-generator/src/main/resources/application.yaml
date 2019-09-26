@@ -1,0 +1,31 @@
+spring.cloud.stream.kstream.binder.configuration.commit.interval.ms: 1000
+spring.cloud.stream.kstream.binder.configuration:
+  default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+  default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        LINES_OUT:
+          destination: lines
+        COUNTS_IN:
+          destination: counts
+          group: wordcount-counts
+        WINDOWED_COUNTS_IN:
+          destination: windowedCounts
+          group: windowed-wordcount-counts
+
+  application:
+    name: lines-generator
+#    cloud:
+#      stream:
+#        kafka:
+#          binder:
+#            brokers: bitnami-kafka-0.bitnami-kafka-headless.default.svc.kafka.cloudpandit.online:9092
+#          streams:
+#            binder:
+#              brokers: bitnami-kafka-0.bitnami-kafka-headless.default.svc.kafka.cloudpandit.online:9092
+#              configuration:
+#                zkNodes: bitnami-kafka-zookeeper-0.bitnami-kafka-zookeeper-headless.default.svc.kafka.cloudpandit.online:2181
+
