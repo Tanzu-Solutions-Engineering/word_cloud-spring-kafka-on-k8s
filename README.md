@@ -76,7 +76,7 @@ cd windowed-wordcount-stream
 java -jar target/windowed-wordcount-stream-1.0.jar
 ```
 
-#### Start the [web UI](web-api) app, either from your favorite IDE or
+#### Start the [web UI](web-ui) app, either from your favorite IDE or
 ```
 cd web-ui
 ./mvnw clean package
