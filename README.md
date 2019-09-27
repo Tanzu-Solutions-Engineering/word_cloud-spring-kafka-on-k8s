@@ -24,7 +24,6 @@ Here is the topology of the application
 1. [Lines Generator](./lines-generator) - sends random text lines to “lines” topic, reads data from “counts” topic, reads data from “windowed counts” topic
 1. [Word Count Stream](./wordcount-stream) - Uses Kstream to read from “lines” topic, performs stateful transformations i.e. count words, send output to “counts” topic on Kafka and stores the output in a PCC region “Words_Count”
 1. [Windowed Word Count Stream](./windowed-wordcount-stream) - Uses Kstream to read from “lines” topic, performs stateful transformations using tumbling window i.e. windowed count words, send output to “windowed counts” topic on Kafka and stores the output in a PCC region “Words_Count_Windowed”
-1. [Word cloud API](./wordcount-api) - Provides API access to data from PCC regions “Words_Count” and “Words_Count_Windowed”
 1. [Web UI](./web-ui) - UI dashboard that uses Word cloud API
 
 ### Gemfire/PCC regions
@@ -50,7 +49,7 @@ cd kafka-local
 ./stop-docker.sh
 docker-compose up -d
 ```
-#### Start gemfire cache server instance 
+#### Start gemfire cache server instance [cache-server](cache-server)
 ```
 cd cache-server
 ./mvnw clean package
@@ -77,13 +76,6 @@ cd windowed-wordcount-stream
 java -jar target/windowed-wordcount-stream-1.0.jar
 ```
 
-#### Start the [word cloud API](wordcount-api) app, either from your favorite IDE or
-```
-cd wordcount-api
-./mvnw clean package
-java -jar target/wordcount-api-1.0.jar
-```
-
 #### Start the [web UI](web-api) app, either from your favorite IDE or
 ```
 cd web-ui
@@ -92,7 +84,6 @@ java -jar target/web-ui-1.0.jar
 ```
 
 #### API Endpoints
-1. [List all Words / Counts](http://localhost:8081/list)
-1. [Windowed Word / Count](http://localhost:8081/listwcw)
-1. [Web GUI](http://localhost:8084)
-1. Get Wordcount for Start/End Time - http://localhost:8081/computewordcount/{startTime}/{endTime}
+1. [List all Words / Counts](http://localhost:8084)
+1. [Windowed Word / Count] - TODO
+1. Get Wordcount for Start/End Time - TODO
