@@ -266,19 +266,25 @@
             dense
     >
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title>Spring Boot + Confluent + Pivotal Cloud Cache WordCloud</v-toolbar-title>
+        <v-toolbar-title>Spring Boot + Kafka + Geode WordCloud</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
                 icon
-                v-on:click="generateWordsText('/words')"
+                v-on:click="generateWordsText('/words/10S')"
         >
-            <v-icon>mdi mdi-home</v-icon>
+            <v-icon>mdi mdi-timer-10</v-icon>
         </v-btn>
         <v-btn  icon
-                v-on:click="generateWordsText('/words/windowed')"
+                v-on:click="generateWordsText('/words/60S')"
         >
-            <v-icon>mdi mdi-alpha-w-circle-outline</v-icon>
+            <v-icon>mdi mdi-timelapse</v-icon>
         </v-btn>
+        <v-btn  icon
+                v-on:click="generateWordsText('/words/2-5M')"
+        >
+            <v-icon>mdi mdi-timetable</v-icon>
+        </v-btn>
+
         <v-btn
                 href="https://github.com/Pivotal-Field-Engineering/pivotal-confluent-demo"
                 icon

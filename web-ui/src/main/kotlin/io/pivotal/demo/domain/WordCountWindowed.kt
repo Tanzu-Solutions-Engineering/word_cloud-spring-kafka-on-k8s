@@ -42,5 +42,9 @@ class WordCountWindowed {
         this.startTimeInLong = startTimeInLong
         this.word = this.wordCountCompsiteKey?.word
     }
+
+   constructor(){
+
+   }
 }
 

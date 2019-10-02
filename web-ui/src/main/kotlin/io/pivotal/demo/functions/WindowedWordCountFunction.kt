@@ -9,5 +9,5 @@ import org.springframework.data.gemfire.function.annotation.OnRegion
 interface WindowedWordCountFunction {
 
     @FunctionId("ComputeWindowedWordCount")
-    fun computeWindowedWordCount(startTimeInMillis: Long?, endTimeInMillis: Long?): HashMap<String, Long>
+    fun computeWindowedWordCount(startTimeInMillis: Long?, endTimeInMillis: Long?): List<*>
 }

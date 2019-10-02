@@ -35,7 +35,7 @@ public class CloudCacheConfig {
 		wordsCountRegion.setClose(false);
 		wordsCountRegion.setPersistent(false);
 		wordsCountRegion.setStatisticsEnabled(true);
-		wordsCountRegion.setEntryTimeToLive(new ExpirationAttributes(60, ExpirationAction.DESTROY));
+		wordsCountRegion.setEntryTimeToLive(new ExpirationAttributes(11, ExpirationAction.DESTROY));
 
 		return wordsCountRegion;
 	}
