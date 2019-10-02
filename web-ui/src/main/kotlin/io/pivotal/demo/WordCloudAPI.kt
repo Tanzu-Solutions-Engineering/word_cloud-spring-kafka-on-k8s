@@ -8,6 +8,7 @@ import io.pivotal.demo.repositories.WordCountRepo
 import io.pivotal.demo.repositories.WordCountWindowedRepo
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.data.domain.Sort
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
@@ -33,28 +34,46 @@ class WordCloudAPI(
 
     @GetMapping("/words")
     fun words(): List<Word> {
-        val words = mutableListOf<Word>()
+        val allwords = mutableListOf<Word>()
         for (w in wcRepo.findAll()){
-            words.add(Word(w.word!!, w.wordCount))
+            allwords.add(Word(w.word!!, w.wordCount))
         }
 
-        if (words.size == 0){
-            words.add(Word("NO STREAM DATA", 10))
+        if (allwords.size == 0){
+            allwords.add(Word("NO STREAM DATA", 10))
         }
 
-        return words
+        return allwords.shuffled().take(20)
     }
 
-    @GetMapping("/listwcw")
-    fun listWCW(): Iterable<WordCountWindowed> {
-        return wcwRepo.findAll()
+    @GetMapping("/words/windowed")
+    fun wordsWindowed(): List<Word> {
+        val allwords = mutableListOf<Word>()
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.MILLISECOND, -60000)
+        val startTimeInLong = calendar.timeInMillis
+
+        calendar.add(Calendar.MILLISECOND, -30000)
+        val endTimeInLong = calendar.timeInMillis
+
+        val windowMap = functionExecutor.computeWindowedWordCount(startTimeInLong,endTimeInLong)
+
+        for (e in windowMap.entries){
+            allwords.add(Word(e.key!!, e.value.toLong()))
+        }
+
+        if (allwords.size == 0){
+            allwords.add(Word("NO STREAM DATA", 10))
+        }
+
+        return allwords.shuffled().take(20)
     }
 
-    @GetMapping("/computewordcount/{startTime}/{endTime}")
-    fun computeWordCount(@PathVariable startTime: Long?,
-                         @PathVariable endTime: Long?): List<*> {
-        return functionExecutor.computeWindowedWordCount(startTime, endTime)
-    }
+//    @GetMapping("/computewordcount/{startTime}/{endTime}")
+//    fun computeWordCount(@PathVariable startTime: Long?,
+//                         @PathVariable endTime: Long?): List<*> {
+//        return functionExecutor.computeWindowedWordCount(startTime, endTime)
+//    }
 
     private fun randomWord(): String {
         return Random().ints((3 until textLength).random().toLong(), 0, charPool.size)

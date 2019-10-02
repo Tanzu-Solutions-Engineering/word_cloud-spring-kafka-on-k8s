@@ -1,5 +1,6 @@
 package io.pivotal.demo.linesgenerator;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -7,8 +8,10 @@ import java.util.concurrent.TimeUnit;
 import io.pivotal.demo.linesgenerator.bindings.CountsSinkBinding;
 import io.pivotal.demo.linesgenerator.bindings.LinesSourceBinding;
 import io.pivotal.demo.linesgenerator.bindings.WindowedCountsSinkBinding;
-import io.pivotal.demo.domain.WordCount;
-import io.pivotal.demo.domain.WordCountWindowed;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,25 +46,38 @@ public class LinesGeneratorApplication {
 
 		@Override
 		public void run(ApplicationArguments args) {
-			String[] lines = new String[]{
-					"Pivotal sells Pivotal Cloud Foundry or PCF",
-					"PCF is a platform to deploy other platforms such as Pivotal Application Service (PAS), Pivotal Container Service (PKS), RabbitMQ, Pivotal Cloud Cache (PCC), etc",
-					"Madhav works at Pivotal as a Platform Architet",
-					"Madhav sells PCF with PAS, PKS, RabbitMQ, PCC",
-					"PAS is the best platform to deploy cloud native apps",
-					"Cloud native apps deliver cloud portability, scalability, disposability"
-			};
+
 			Random random = new Random();
 
+			ArrayList<String> urls = new ArrayList<String>();
+			try {
+				Document doc = Jsoup.connect("http://spring.io/blog").get();
+				log.info(doc.title());
+				Elements blogs = doc.select("article a");
+				for (Element blog : blogs) {
+					urls.add(blog.absUrl("href"));
+				}
+			}
+			catch (Exception e){
+				log.error("HTML scraper failed...");
+				log.error(e.getMessage());
+			}
+
 			Runnable runnable = () -> {
-				String line = lines[random.nextInt(6)];
-				Message<String> message = MessageBuilder
-						.withPayload(line)
-						.setHeader(KafkaHeaders.MESSAGE_KEY, line.getBytes())
-						.build();
 				try {
-					linesOut.send(message);
-					log.info("Sent - " + line);
+				Document doc = Jsoup.connect(urls.get(random.nextInt(urls.size()-1))).get();
+				Elements paragraphs = doc.select("p");
+
+				for (Element paragraph : paragraphs) {
+					    String line = Jsoup.parse(paragraph.toString()).text();
+						Message<String> message = MessageBuilder
+								.withPayload(line)
+								.setHeader(KafkaHeaders.MESSAGE_KEY, line.getBytes())
+								.build();
+						linesOut.send(message);
+						log.info("Sent - " + line);
+					}
+
 				} catch (Exception e) {
 					log.error(e.getMessage());
 				}
@@ -77,7 +93,7 @@ public class LinesGeneratorApplication {
 		private final Logger log = LoggerFactory.getLogger(getClass());
 
 		@StreamListener(CountsSinkBinding.COUNTS_IN)
-		public void showCounts(WordCount wc) {
+		public void showCounts(Object wc) {
 			log.info("WordCount received: " + wc);
 		}
 	}
@@ -88,7 +104,7 @@ public class LinesGeneratorApplication {
 		private final Logger log = LoggerFactory.getLogger(getClass());
 
 		@StreamListener(WindowedCountsSinkBinding.WINDOWED_COUNTS_IN)
-		public void showCounts(WordCountWindowed wcw) {
+		public void showCounts(Object wcw) {
 			log.info("WordCountWindowed received: " + wcw);
 		}
 	}

@@ -1,0 +1,37 @@
+
+[info 2019/10/01 12:08:38.901 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.7.185(CloudCacheServerApp:11822)<ec><v0>:1024|0] members: [192.168.7.185(CloudCacheServerApp:11822)<ec><v0>:1024{lead}]
+
+[info 2019/10/01 12:09:00.668 EDT <Cache Server Load Polling Thread> tid=0xc5] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.7.185(CloudCacheServerApp:11822)<ec><v0>:1024 
+
+[info 2019/10/01 13:09:43.188 EDT <Cache Server Load Polling Thread> tid=0xc5] server count: 1 connected client count: 3 client subscription queue count: 3
+  current servers : 192.168.7.185(CloudCacheServerApp:11822)<ec><v0>:1024 
+
+[info 2019/10/01 14:37:54.274 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.7.185(CloudCacheServerApp:33082)<ec><v0>:1024|0] members: [192.168.7.185(CloudCacheServerApp:33082)<ec><v0>:1024{lead}]
+
+[info 2019/10/01 14:38:05.606 EDT <Cache Server Load Polling Thread> tid=0xb9] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.7.185(CloudCacheServerApp:33082)<ec><v0>:1024 
+
+[info 2019/10/01 15:38:33.310 EDT <Cache Server Load Polling Thread> tid=0xb9] server count: 1 connected client count: 2 client subscription queue count: 2
+  current servers : 192.168.7.185(CloudCacheServerApp:33082)<ec><v0>:1024 
+
+[info 2019/10/01 16:38:35.866 EDT <Cache Server Load Polling Thread> tid=0xb9] server count: 1 connected client count: 2 client subscription queue count: 2
+  current servers : 192.168.7.185(CloudCacheServerApp:33082)<ec><v0>:1024 
+
+[info 2019/10/01 17:38:53.543 EDT <Cache Server Load Polling Thread> tid=0xb9] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.7.185(CloudCacheServerApp:33082)<ec><v0>:1024 
+
+[info 2019/10/01 18:39:32.420 EDT <Cache Server Load Polling Thread> tid=0xb9] server count: 1 connected client count: 0 client subscription queue count: 0
+  current servers : 192.168.7.185(CloudCacheServerApp:33082)<ec><v0>:1024 
+
+[info 2019/10/01 19:40:06.575 EDT <Cache Server Load Polling Thread> tid=0xb9] server count: 1 connected client count: 0 client subscription queue count: 0
+  current servers : 192.168.7.185(CloudCacheServerApp:33082)<ec><v0>:1024 
+
+[info 2019/10/01 20:40:19.915 EDT <Cache Server Load Polling Thread> tid=0xb9] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.7.185(CloudCacheServerApp:33082)<ec><v0>:1024 
+
+[info 2019/10/01 21:41:02.270 EDT <Cache Server Load Polling Thread> tid=0xb9] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.7.185(CloudCacheServerApp:33082)<ec><v0>:1024 
+
+[info 2019/10/01 22:41:09.718 EDT <Cache Server Load Polling Thread> tid=0xb9] server count: 1 connected client count: 3 client subscription queue count: 3
+  current servers : 192.168.7.185(CloudCacheServerApp:33082)<ec><v0>:1024 

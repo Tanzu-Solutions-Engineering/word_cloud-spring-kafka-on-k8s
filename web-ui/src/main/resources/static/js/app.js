@@ -268,9 +268,9 @@
         },
 
         created: function() {
-            this.generateWordsText();
+            this.generateWordsText("/words");
             this.randomizeSelections();
-            this.timer = setInterval(this.generateWordsText, 10000)
+            //this.timer = setInterval(this.generateWordsText, 30000)
         },
 
         beforeDestroy () {
@@ -286,10 +286,11 @@
                 this.rotationItemIndex = chance.integer({min: 0, max: this.rotationItems.length - 1});
             },
 
-            generateWordsText: function () {
+            generateWordsText: function (value) {
                 this.wordsTextArea = "";
                 this.wordsText = [];
-                Vue.http.get('/words').then(response => {
+
+                Vue.http.get(value).then(response => {
                     if (response.status === 200) {
                         const list = JSON.parse(response.bodyText);
                         list.forEach(item => {

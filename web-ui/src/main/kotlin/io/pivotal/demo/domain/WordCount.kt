@@ -23,4 +23,9 @@ class WordCount {
         this.word = word
         this.wordCount = count
     }
+
+    operator fun compareTo(other: WordCount): Int {
+        val last = this.wordCount.compareTo(other.wordCount)
+        return if (last == 0) this.wordCount.compareTo(other.wordCount) else last
+    }
 }

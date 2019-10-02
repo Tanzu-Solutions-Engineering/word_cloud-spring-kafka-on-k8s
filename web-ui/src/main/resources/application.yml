@@ -17,7 +17,7 @@ logging:
     io.pace: DEBUG
 words:
   text:
-    length: 10
+    length: 50
   frame:
     size: 100
 
