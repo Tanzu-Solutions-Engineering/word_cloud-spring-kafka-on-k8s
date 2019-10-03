@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: windowed-wordcount-stream
+  name: windowed-wordcount-stream
+spec:
+  containers:
+  - image: cdelashmutt/windowed-wordcount-stream
+    name: windowed-wordcount-stream
+    args:
+    - --spring.data.gemfire.pool.servers=cache-server[40404]
+    - --spring.cloud.stream.kafka.binder.brokers=my-kafka
+    - --spring.cloud.stream.kafka.streams.binder.brokers=my-kafka
+    - --spring.cloud.stream.kafka.streams.binder.zk-nodes=my-kafka-zookeeper
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: web-ui
+  name: web-ui
+spec:
+  containers:
+  - image: cdelashmutt/web-ui
+    name: web-ui
+    ports:
+    - containerPort: 8084
+    args:
+    - --spring.data.gemfire.pool.servers=cache-server[40404]
+    readinessProbe:
+      httpGet:
+        path: /actuator/health
+        port: 8084
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

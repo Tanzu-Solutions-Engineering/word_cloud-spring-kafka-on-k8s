@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: lines-generator
+  name: lines-generator
+spec:
+  containers:
+  - image: cdelashmutt/lines-generator
+    name: lines-generator
+    args:
+    - --spring.cloud.stream.kafka.binder.brokers=my-kafka
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
