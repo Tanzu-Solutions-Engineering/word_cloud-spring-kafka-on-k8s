@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+ 
+    <groupId>io.pivotal.demo</groupId>
+    <artifactId>pivotal-confluent-demo</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+ 
+    <name>Pivotal Confluent Demo</name>
+ 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.8.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<docker.image.prefix>cdelashmutt</docker.image.prefix>
+    </properties>
+
+ 	<build>
+		<pluginManagement>
+		  <plugins>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.31.0</version>
+				<configuration>
+				  <images>
+				    <image>
+					  <name>${docker.image.prefix}/${project.artifactId}</name>
+					</image>
+				  </images>
+				</configuration>
+			</plugin>
+		  </plugins>
+		</pluginManagement>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<modules>
+		<module>cache-server</module>
+		<module>lines-generator</module>
+		<module>web-ui</module>
+		<module>windowed-wordcount-stream</module>
+		<module>wordcount-stream</module>
+	</modules>
+</project>

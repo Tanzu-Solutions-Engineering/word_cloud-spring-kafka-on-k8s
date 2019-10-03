@@ -87,3 +87,57 @@ java -jar target/web-ui-1.0.jar
 1. [List all Words / Counts](http://localhost:8084)
 1. [Windowed Word / Count] - TODO
 1. Get Wordcount for Start/End Time - TODO
+
+### Deploying to Kubernetes
+#### Build the apps
+The `docker.image.prefix` property should be set to be set to your username on Dockerhub.  For example, if you called the command below with `-Ddocker.image.prefix=foobar`, then the resulting image would be tagged as `foobar/${project.artifactId}`.
+```
+pivotal-confluent-demo $ ./mvnw package docker:build -Ddocker.image.prefix=<your-dockerhub-username>
+```
+
+#### Push to Dockerhub
+```
+pivotal-confluent-demo $ ./mvnw docker:push -Ddocker.image.prefix=<your-dockerhub-username>
+```
+
+#### Deploy Kafka
+You will need a storage class for Kafka to create persistent volumes.  Here's an template for doing this on vSphere:
+```
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+name: default
+parameters:
+datastore: <your-vsphere-datastore-here>
+provisioner: kubernetes.io/vsphere-volume 
+```
+
+Then you can proceed to deploy Kafka via Helm
+```
+helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
+helm install --name my-kafka incubator/kafka
+```
+
+#### Run Applications
+Run the following command, and break out after you see the web-ui ready.
+```
+pivotal-confluent-demo $ kubectl create -f k8s/apps ; kubectl get pod web-ui -w
+```
+
+#### Expose the Web UI
+##### NodePort
+```
+kubectl expose pod web-ui --target-port=8084 --name=web-ui-service --type=NodePort
+````
+
+##### LoadBalancer
+```
+kubectl expose pod web-ui --target-port=8084 --name=web-ui-service --type=LoadBalancer
+```
+
+#### Delete Apps
+```
+pivotal-confluent-demo $ kubectl delete -f k8s/apps ; kubectl delete service web-ui-service
+```

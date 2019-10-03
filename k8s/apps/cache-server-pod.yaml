@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: cache-server
+  name: cache-server
+spec:
+  containers:
+  - image: cdelashmutt/cache-server
+    name: cache-server
+    ports:
+    - containerPort: 40404
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
