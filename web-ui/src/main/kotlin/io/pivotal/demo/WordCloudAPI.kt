@@ -1,21 +1,25 @@
 package io.pivotal.demo
 
-import io.pivotal.demo.domain.WordCount
-import io.pivotal.demo.domain.WordCountWindowed
-import io.pivotal.demo.domain.WordCountWindowedCompsiteKey
 import io.pivotal.demo.functions.WindowedWordCountFunction
 import io.pivotal.demo.repositories.WordCountRepo
 import io.pivotal.demo.repositories.WordCountWindowedRepo
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.data.domain.Sort
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
 import kotlin.streams.asSequence
 
 data class Word(val text: String, val weight: Long)
+
+class CompareWords {
+    companion object : Comparator<Word> {
+        override fun compare(a: Word, b: Word): Int = when {
+            a.weight != b.weight -> b.weight.toInt() - a.weight.toInt()
+            else -> b.weight.toInt() - a.weight.toInt()
+        }
+    }
+}
 
 @RestController
 class WordCloudAPI(
@@ -32,7 +36,7 @@ class WordCloudAPI(
     @Autowired
     lateinit var functionExecutor: WindowedWordCountFunction
 
-    @GetMapping("/words")
+    @GetMapping("/words/10S")
     fun words(): List<Word> {
         val allwords = mutableListOf<Word>()
         for (w in wcRepo.findAll()){
@@ -46,27 +50,40 @@ class WordCloudAPI(
         return allwords.shuffled().take(20)
     }
 
-    @GetMapping("/words/windowed")
-    fun wordsWindowed(): List<Word> {
+    @GetMapping("/words/60S")
+    fun wordsWindowedLast60seconds(): List<Word> {
         val allwords = mutableListOf<Word>()
-        val calendar = Calendar.getInstance()
-        calendar.add(Calendar.MILLISECOND, -60000)
-        val startTimeInLong = calendar.timeInMillis
+        val wordsHashMap = functionExecutor.computeWindowedWordCount(System.currentTimeMillis() - 60000,
+                System.currentTimeMillis()).get(0) as HashMap<String, Long>
 
-        calendar.add(Calendar.MILLISECOND, -30000)
-        val endTimeInLong = calendar.timeInMillis
-
-        val windowMap = functionExecutor.computeWindowedWordCount(startTimeInLong,endTimeInLong)
-
-        for (e in windowMap.entries){
-            allwords.add(Word(e.key!!, e.value.toLong()))
+        for (entry in wordsHashMap.entries)
+        {
+            allwords.add(Word(entry.key!!, entry.value))
         }
 
         if (allwords.size == 0){
             allwords.add(Word("NO STREAM DATA", 10))
         }
 
-        return allwords.shuffled().take(20)
+        return allwords.sortedWith(CompareWords).take(20)
+    }
+
+    @GetMapping("/words/2-5M")
+    fun wordsWindowed2to5minutes(): List<Word> {
+        val allwords = mutableListOf<Word>()
+        val wordsHashMap = functionExecutor.computeWindowedWordCount(System.currentTimeMillis() - 300000,
+                System.currentTimeMillis() - 120000).get(0) as HashMap<String, Long>
+
+        for (entry in wordsHashMap.entries)
+        {
+            allwords.add(Word(entry.key!!, entry.value))
+        }
+
+        if (allwords.size == 0){
+            allwords.add(Word("NO STREAM DATA", 10))
+        }
+
+        return allwords.sortedWith(CompareWords).take(20)
     }
 
 //    @GetMapping("/computewordcount/{startTime}/{endTime}")
@@ -75,14 +92,6 @@ class WordCloudAPI(
 //        return functionExecutor.computeWindowedWordCount(startTime, endTime)
 //    }
 
-    private fun randomWord(): String {
-        return Random().ints((3 until textLength).random().toLong(), 0, charPool.size)
-                .asSequence()
-                .map(charPool::get)
-                .joinToString("")
-    }
-
-    fun IntRange.random() = Random().nextInt((endInclusive + 1) - start) + start
 
     constructor(wcRepo: WordCountRepo, wcwRepo: WordCountWindowedRepo, functionExecutor: WindowedWordCountFunction) : this() {
         this.wcRepo = wcRepo

@@ -213,7 +213,7 @@
                 spacingValues: [0, 1/4, 1/2, 1, 2],
                 timer: '',
                 wordsText: [],
-                wordsTextArea: '',
+                wordsTextArea: ''
             };
         },
 

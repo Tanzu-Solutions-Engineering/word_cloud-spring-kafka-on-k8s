@@ -22,6 +22,13 @@ class WordCountWindowedCompsiteKey {
         return word == that!!.word && start == that.start
     }
 
+    override fun toString(): String {
+        return "WordCountWindowedCompsiteKey{" +
+                "word='" + word + '\''.toString() +
+                ", start=" + start +
+                '}'.toString()
+    }
+
     override fun hashCode(): Int {
         return Objects.hash(word, start)
     }
