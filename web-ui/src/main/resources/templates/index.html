@@ -268,12 +268,6 @@
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Spring Boot + Kafka + Geode WordCloud</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn
-                icon
-                v-on:click="generateWordsText('/words/10S')"
-        >
-            <v-icon>mdi mdi-timer-10</v-icon>
-        </v-btn>
         <v-btn  icon
                 v-on:click="generateWordsText('/words/60S')"
         >
@@ -283,6 +277,12 @@
                 v-on:click="generateWordsText('/words/2-5M')"
         >
             <v-icon>mdi mdi-timetable</v-icon>
+        </v-btn>
+        <v-btn  href="https://docs.google.com/presentation/d/e/2PACX-1vRl_MJunai4KSYVn-HLO2FR2tbVr_w7O3Swz0D81z744hEcjE8xGf7uwcTHcEZp21-5hzvhOg4TWuKl/pub?start=false&loop=false&delayms=30000"
+                icon
+                target="_blank"
+        >
+            <v-icon>mdi mdi-presentation-play</v-icon>
         </v-btn>
 
         <v-btn
@@ -324,6 +324,7 @@
 								transition-duration: 1s;
 							"
                 >
+
                     <vue-word-cloud
                             :animation-duration="animationDuration"
                             :animation-easing="animationEasing"
@@ -351,6 +352,7 @@
                             </v-tooltip>
                         </template>
                     </vue-word-cloud>
+
                 </div>
                 <v-scale-transition>
                     <v-progress-circular

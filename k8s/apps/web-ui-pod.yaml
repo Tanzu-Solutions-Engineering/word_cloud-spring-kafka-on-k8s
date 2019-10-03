@@ -6,7 +6,7 @@ metadata:
   name: web-ui
 spec:
   containers:
-  - image: cdelashmutt/web-ui
+  - image: williamsjt/web-ui
     name: web-ui
     ports:
     - containerPort: 8084

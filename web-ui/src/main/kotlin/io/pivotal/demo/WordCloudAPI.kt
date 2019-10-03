@@ -36,29 +36,12 @@ class WordCloudAPI(
     @Autowired
     lateinit var functionExecutor: WindowedWordCountFunction
 
-    @GetMapping("/words/10S")
+    @GetMapping("/words/60S")
     fun words(): List<Word> {
         val allwords = mutableListOf<Word>()
         for (w in wcRepo.findAll()){
-            allwords.add(Word(w.word!!, w.wordCount))
-        }
-
-        if (allwords.size == 0){
-            allwords.add(Word("NO STREAM DATA", 10))
-        }
-
-        return allwords.shuffled().take(20)
-    }
-
-    @GetMapping("/words/60S")
-    fun wordsWindowedLast60seconds(): List<Word> {
-        val allwords = mutableListOf<Word>()
-        val wordsHashMap = functionExecutor.computeWindowedWordCount(System.currentTimeMillis() - 60000,
-                System.currentTimeMillis()).get(0) as HashMap<String, Long>
-
-        for (entry in wordsHashMap.entries)
-        {
-            allwords.add(Word(entry.key!!, entry.value))
+            if (!commonWordCheck(w.word!!))
+                allwords.add(Word(w.word!!, w.wordCount))
         }
 
         if (allwords.size == 0){
@@ -76,7 +59,8 @@ class WordCloudAPI(
 
         for (entry in wordsHashMap.entries)
         {
-            allwords.add(Word(entry.key!!, entry.value))
+            if (!commonWordCheck(entry.key!!!!))
+                allwords.add(Word(entry.key!!, entry.value))
         }
 
         if (allwords.size == 0){
@@ -85,6 +69,24 @@ class WordCloudAPI(
 
         return allwords.sortedWith(CompareWords).take(20)
     }
+
+    fun commonWordCheck(word:String) : Boolean {
+        val commonWords = arrayOf("the", "be", "to", "of", "and", "a", "in", "that", "have","I", "it", "for", "not", "on",
+                                  "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "they", "we",
+                                  "say", "her", "she", "or", "an", "will", "my", "one", "all", "would", "there", "their",
+                                  "what", "so", "up", "out", "if", "about", "who", "get", "which", "go", "me", "when",
+                                  "make", "can", "like", "time", "no", "just", "him", "know", "take", "people", "into",
+                                  "year", "your", "good", "some", "could", "them", "see", "other", "than", "then", "now",
+                                  "look", "only", "come", "its", "over", "think", "also", "back", "after", "use", "two",
+                                   "how", "our", "work", "first", "well", "way", "even", "new", "want", "because", "any",
+                                   "these", "give", "day", "most", "us", "is", "0", "s", "2", "1", "has", "are")
+        if (commonWords.contains(word)){
+            return true
+        }
+        return false
+    }
+
+
 
 //    @GetMapping("/computewordcount/{startTime}/{endTime}")
 //    fun computeWordCount(@PathVariable startTime: Long?,

@@ -35,7 +35,7 @@ public class CloudCacheConfig {
 		wordsCountRegion.setClose(false);
 		wordsCountRegion.setPersistent(false);
 		wordsCountRegion.setStatisticsEnabled(true);
-		wordsCountRegion.setEntryTimeToLive(new ExpirationAttributes(11, ExpirationAction.DESTROY));
+		wordsCountRegion.setEntryTimeToLive(new ExpirationAttributes(60, ExpirationAction.DESTROY));
 
 		return wordsCountRegion;
 	}
@@ -49,9 +49,7 @@ public class CloudCacheConfig {
 		wordsCountWindowedRegion.setCache(gemfireCache);
 		wordsCountWindowedRegion.setClose(false);
 		wordsCountWindowedRegion.setPersistent(false);
-		wordsCountWindowedRegion.setShortcut(RegionShortcut.PARTITION_REDUNDANT_HEAP_LRU);
-		wordsCountWindowedRegion.setEvictionAttributes(
-				EvictionAttributes.createLRUHeapAttributes());
+		wordsCountWindowedRegion.setEntryTimeToLive(new ExpirationAttributes(300, ExpirationAction.DESTROY));
 
 		return wordsCountWindowedRegion;
 	}

@@ -6,7 +6,7 @@ metadata:
   name: wordcount-stream
 spec:
   containers:
-  - image: cdelashmutt/wordcount-stream
+  - image: williamsjt/wordcount-stream
     name: wordcount-stream
     args:
     - --spring.data.gemfire.pool.servers=cache-server[40404]

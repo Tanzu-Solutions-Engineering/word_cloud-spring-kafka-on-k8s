@@ -6,7 +6,7 @@ metadata:
   name: cache-server
 spec:
   containers:
-  - image: cdelashmutt/cache-server
+  - image: williamsjt/cache-server
     name: cache-server
     ports:
     - containerPort: 40404

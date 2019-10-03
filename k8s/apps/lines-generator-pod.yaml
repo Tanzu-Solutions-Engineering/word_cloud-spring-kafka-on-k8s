@@ -6,7 +6,7 @@ metadata:
   name: lines-generator
 spec:
   containers:
-  - image: cdelashmutt/lines-generator
+  - image: williamsjt/lines-generator
     name: lines-generator
     args:
     - --spring.cloud.stream.kafka.binder.brokers=my-kafka

@@ -82,7 +82,7 @@ public class LinesGeneratorApplication {
 					log.error(e.getMessage());
 				}
 			};
-			Executors.newScheduledThreadPool(1).scheduleAtFixedRate(runnable, 1, 1, TimeUnit.SECONDS);
+			Executors.newScheduledThreadPool(1).scheduleAtFixedRate(runnable, 1, 3, TimeUnit.SECONDS);
 		}
 
 	}

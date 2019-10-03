@@ -1,5 +1,5 @@
 
-spring.cloud.stream.kstream.binder.configuration.commit.interval.ms: 1000
+spring.cloud.stream.kstream.binder.configuration.commit.interval.ms: 2000
 spring.cloud.stream.kstream.binder.configuration:
   default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
   default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
