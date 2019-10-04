@@ -117,7 +117,7 @@ provisioner: kubernetes.io/vsphere-volume
 Then you can proceed to deploy Kafka via Helm
 ```
 helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
-helm install --name my-kafka incubator/kafka
+helm install --set persistence.size=50Gi --name my-kafka incubator/kafka
 ```
 
 #### Run Applications
@@ -140,4 +140,10 @@ kubectl expose pod web-ui --target-port=8084 --name=web-ui-service --type=LoadBa
 #### Delete Apps
 ```
 pivotal-confluent-demo $ kubectl delete -f k8s/apps ; kubectl delete service web-ui-service
+```
+
+#### Delete Kafka
+```
+helm delete --purge my-kakfa
+kubectl delete pvc $(kubectl get pvc -o=custom-columns=Name:.metadata.name | grep datadir-my-kafka)
 ```
