@@ -10,7 +10,7 @@ The streaming applications consuming from Kafka topic use Kafka's native streami
 Spring Cloud Stream binders.
 
 Here is the topology of the application
-![Words Cloud application](Kafka-PCC-Words-Cloud-App-Topology.png)
+![Words Cloud application](architecture.png)
 
 ## Key components
 
