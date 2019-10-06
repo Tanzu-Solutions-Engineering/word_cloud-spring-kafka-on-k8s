@@ -13,15 +13,16 @@ spring:
         COUNTS_OUT:
           destination: windowedCounts
 
-#      kafka:
-#        streams:
-#          bindings:
-#            COUNTS_OUT:
-#              producer:
-#                useNativeEncoding: true
-#                key-serde: org.apache.kafka.common.serialization.Serdes$StringSerde
-#                value-serde: org.apache.kafka.common.serialization.Serdes$LongSerde
-
+      kafka:
+        streams:
+          bindings:
+            COUNTS_OUT:
+             consumer:
+                useNativeDecoding: true
+                key-serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                value-serde: org.apache.kafka.common.serialization.Serdes$LongSerde
+                
+             
   application:
     name: wordcount-windowed
 #    cloud:
@@ -35,4 +36,4 @@ spring:
 #              configuration:
 #                zkNodes: bitnami-kafka-zookeeper-0.bitnami-kafka-zookeeper-headless.default.svc.kafka.cloudpandit.online:2181
 server:
-  port: 8082
+  port: 8091

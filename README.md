@@ -10,7 +10,7 @@ The streaming applications consuming from Kafka topic use Kafka's native streami
 Spring Cloud Stream binders.
 
 Here is the topology of the application
-![Words Cloud application](architecture.png)
+![Words Cloud application](Kafka-PCC-Words-Cloud-App-Topology.png)
 
 ## Key components
 
@@ -114,27 +114,16 @@ datastore: <your-vsphere-datastore-here>
 provisioner: kubernetes.io/vsphere-volume 
 ```
 
-Set the namespace that you want to work in
-```
-kubectl config set-context --current --namespace=wordcount
-```
-
 Then you can proceed to deploy Kafka via Helm
 ```
 helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
-helm install --set log.retention.hours=4,persistence.size=10Gi,replicas=6 --name my-kafka incubator/kafka 
+helm install --set persistence.size=50Gi --name my-kafka incubator/kafka
 ```
 
-#### Create and Run Cache Pod
-Run the following command, and break out after you see the ready.
-```
-kubectl create -f k8s/cache; kubectl get pod cache-server -w
-```
-
-#### Create and Run Application Pods
+#### Run Applications
 Run the following command, and break out after you see the web-ui ready.
 ```
-kubectl create -f k8s/apps; kubectl get pod web-ui -w
+pivotal-confluent-demo $ kubectl create -f k8s/apps ; kubectl get pod web-ui -w
 ```
 
 #### Expose the Web UI
@@ -150,21 +139,11 @@ kubectl expose pod web-ui --target-port=8084 --name=web-ui-service --type=LoadBa
 
 #### Delete Apps
 ```
-kubectl delete -f k8s/apps
-```
-
-#### Delete Cache
-```
-kubectl delete -f k8s/cache
-```
-
-#### Delete web-ui-service Service
-```
-kubectl delete service web-ui-service
+pivotal-confluent-demo $ kubectl delete -f k8s/apps ; kubectl delete service web-ui-service
 ```
 
 #### Delete Kafka
 ```
-helm delete my-kafka --purge
+helm delete --purge my-kakfa
 kubectl delete pvc $(kubectl get pvc -o=custom-columns=Name:.metadata.name | grep datadir-my-kafka)
 ```

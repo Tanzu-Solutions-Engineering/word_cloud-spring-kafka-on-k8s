@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="querywordcount">
+	<head>
+		<title>Query Word Count</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    	<script src="querywordcount.js"></script>
+		<style>
+		table {
+		  border-collapse: collapse;
+		}
+		
+		table, td, th {
+		  padding: 10px;	
+		  text-align: left;
+		  border: 1px solid gray;
+		  font-size: 14px;
+		}
+		</style>    	
+	</head>
+
+	<body>
+		<div ng-controller="QueryWordCount">
+		<table  border="1">
+			<tr>
+				<td><b>Word </b></td>
+				<td><b>Word Count</b></td>
+			</tr>
+			<tr ng-repeat="wordCount in wordList | orderBy: '-word'" >
+		  		<td>{{wordCount.word}}</td>
+		  		<td>{{wordCount.wordCount}}</td>
+			</tr>
+		</table>
+		</div>
+	</body>
+</html>

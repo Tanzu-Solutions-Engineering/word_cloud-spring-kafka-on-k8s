@@ -2,7 +2,8 @@ package io.pivotal.demo.bindings;
 
 import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.kstream.KStream;
-
+import org.apache.kafka.streams.kstream.Windowed;
+import org.apache.kafka.streams.kstream.internals.TimeWindow;
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;
 
@@ -13,6 +14,6 @@ public interface LinesProcessorBinding {
 	@Input(LINES_IN)
 	KStream<Bytes, String> linesIn();
 
-	@Output(COUNTS_OUT)
-	KStream<String, Long> countsOut();
+	
+	String WIN_WORD_STORE = "CountsWindowStore";
 }
