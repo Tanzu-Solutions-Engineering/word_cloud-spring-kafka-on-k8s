@@ -1,12 +1,12 @@
 package io.pivotal.demo.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.gemfire.mapping.annotation.Region;
+//import org.springframework.data.annotation.Id;
+//import org.springframework.data.gemfire.mapping.annotation.Region;
 
-@Region(name="Words_Count")
+//@Region(name="Words_Count")
 public class WordCount {
 
-	@Id
+	//@Id
 	private String word;
 	private long wordCount;
 

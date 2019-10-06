@@ -35,9 +35,9 @@ public class WordcountApplication {
 		static final String ALPHA_NUMERIC = "^[a-zA-Z0-9]+$";
 		private WordCountRepo wcRepo;
 
-		public LinesProcessor(WordCountRepo wcRepo) {
+		/*public LinesProcessor(WordCountRepo wcRepo) {
 			this.wcRepo = wcRepo;
-		}
+		}*/
 
 
 		@StreamListener(LinesProcessorBinding.LINES_IN)
@@ -53,7 +53,8 @@ public class WordcountApplication {
 					.map((w, c) -> new KeyValue<>(null,
 							new WordCount(w, c)));
 
-			countStream
+			/*countStream
+			
 					.foreach((key, wc) -> {
 						log.info("WordCount - " + wc);
 						WordCount wcSaved = wcRepo.save(wc);
@@ -61,7 +62,7 @@ public class WordcountApplication {
 							log.info("Cache write successful: " + wcSaved);
 						else
 							log.error("Write to cache failed for: " + wc.getWord());
-					});
+					});*/
 
 			return countStream;
 		}
