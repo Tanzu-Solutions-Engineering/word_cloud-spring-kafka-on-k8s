@@ -92,12 +92,12 @@ java -jar target/web-ui-1.0.jar
 #### Build the apps
 The `docker.image.prefix` property should be set to be set to your username on Dockerhub.  For example, if you called the command below with `-Ddocker.image.prefix=foobar`, then the resulting image would be tagged as `foobar/${project.artifactId}`.
 ```
-pivotal-confluent-demo $ ./mvnw package docker:build -Ddocker.image.prefix=<your-dockerhub-username>
+./mvnw package docker:build -Ddocker.image.prefix=<your-dockerhub-username>
 ```
 
 #### Push to Dockerhub
 ```
-pivotal-confluent-demo $ ./mvnw docker:push -Ddocker.image.prefix=<your-dockerhub-username>
+./mvnw docker:push -Ddocker.image.prefix=<your-dockerhub-username>
 ```
 
 #### Deploy Kafka
