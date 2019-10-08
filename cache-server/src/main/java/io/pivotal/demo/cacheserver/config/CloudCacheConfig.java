@@ -1,10 +1,8 @@
 package io.pivotal.demo.cacheserver.config;
 
-import org.apache.geode.cache.EvictionAttributes;
 import org.apache.geode.cache.ExpirationAction;
 import org.apache.geode.cache.ExpirationAttributes;
 import org.apache.geode.cache.GemFireCache;
-import org.apache.geode.cache.RegionShortcut;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.PartitionedRegionFactoryBean;

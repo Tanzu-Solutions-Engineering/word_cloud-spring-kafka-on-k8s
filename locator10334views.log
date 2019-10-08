@@ -1,0 +1,45 @@
+
+[info 2019/10/08 06:43:37.973 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.43.232(CloudCacheServerApp:26086)<ec><v0>:1024|0] members: [192.168.43.232(CloudCacheServerApp:26086)<ec><v0>:1024{lead}]
+
+[info 2019/10/08 06:44:39.661 EDT <Cache Server Load Polling Thread> tid=0xbc] server count: 1 connected client count: 0 client subscription queue count: 0
+  current servers : 192.168.43.232(CloudCacheServerApp:26086)<ec><v0>:1024 
+
+[info 2019/10/08 06:54:36.482 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.43.232(CloudCacheServerApp:27777)<ec><v0>:1024|0] members: [192.168.43.232(CloudCacheServerApp:27777)<ec><v0>:1024{lead}]
+
+[info 2019/10/08 06:54:57.854 EDT <Cache Server Load Polling Thread> tid=0xba] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.43.232(CloudCacheServerApp:27777)<ec><v0>:1024 
+
+[info 2019/10/08 07:09:45.145 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.43.232(CloudCacheServerApp:29890)<ec><v0>:1024|0] members: [192.168.43.232(CloudCacheServerApp:29890)<ec><v0>:1024{lead}]
+
+[info 2019/10/08 07:10:01.512 EDT <Cache Server Load Polling Thread> tid=0xbf] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.43.232(CloudCacheServerApp:29890)<ec><v0>:1024 
+
+[info 2019/10/08 07:27:47.993 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.43.232(CloudCacheServerApp:32626)<ec><v0>:1024|0] members: [192.168.43.232(CloudCacheServerApp:32626)<ec><v0>:1024{lead}]
+
+[info 2019/10/08 07:28:19.761 EDT <Cache Server Load Polling Thread> tid=0xbd] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.43.232(CloudCacheServerApp:32626)<ec><v0>:1024 
+
+[info 2019/10/08 07:32:06.729 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.43.232(CloudCacheServerApp:33241)<ec><v0>:1024|0] members: [192.168.43.232(CloudCacheServerApp:33241)<ec><v0>:1024{lead}]
+
+[info 2019/10/08 07:32:48.030 EDT <Cache Server Load Polling Thread> tid=0xba] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.43.232(CloudCacheServerApp:33241)<ec><v0>:1024 
+
+[info 2019/10/08 07:40:09.214 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.43.232(CloudCacheServerApp:34359)<ec><v0>:1024|0] members: [192.168.43.232(CloudCacheServerApp:34359)<ec><v0>:1024{lead}]
+
+[info 2019/10/08 07:40:25.628 EDT <Cache Server Load Polling Thread> tid=0xba] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.43.232(CloudCacheServerApp:34359)<ec><v0>:1024 
+
+[info 2019/10/08 07:43:15.541 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.43.232(CloudCacheServerApp:34805)<ec><v0>:1024|0] members: [192.168.43.232(CloudCacheServerApp:34805)<ec><v0>:1024{lead}]
+
+[info 2019/10/08 07:43:27.031 EDT <Cache Server Load Polling Thread> tid=0xc0] server count: 1 connected client count: 3 client subscription queue count: 3
+  current servers : 192.168.43.232(CloudCacheServerApp:34805)<ec><v0>:1024 
+
+[info 2019/10/08 07:49:33.282 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.43.232(CloudCacheServerApp:35682)<ec><v0>:1024|0] members: [192.168.43.232(CloudCacheServerApp:35682)<ec><v0>:1024{lead}]
+
+[info 2019/10/08 07:49:49.769 EDT <Cache Server Load Polling Thread> tid=0xbf] server count: 1 connected client count: 2 client subscription queue count: 1
+  current servers : 192.168.43.232(CloudCacheServerApp:35682)<ec><v0>:1024 
+
+[info 2019/10/08 08:25:29.352 EDT <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.43.232(CloudCacheServerApp:41041)<ec><v0>:1024|0] members: [192.168.43.232(CloudCacheServerApp:41041)<ec><v0>:1024{lead}]
+
+[info 2019/10/08 08:25:45.830 EDT <Cache Server Load Polling Thread> tid=0xb9] server count: 1 connected client count: 1 client subscription queue count: 1
+  current servers : 192.168.43.232(CloudCacheServerApp:41041)<ec><v0>:1024 
