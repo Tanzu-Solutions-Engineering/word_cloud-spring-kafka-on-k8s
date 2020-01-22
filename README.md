@@ -122,7 +122,12 @@ kubectl config set-context --current --namespace=wordcount
 Then you can proceed to deploy Kafka via Helm
 ```
 helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
-helm install --set log.retention.hours=4,persistence.size=10Gi,replicas=6 --name my-kafka incubator/kafka 
+helm install my-kafka incubator/kafka
+```
+
+If you want kafka to run for days, you will need to bump up disk and bump down log retention
+```
+helm install my-kafka incubator/kafka --set log.retention.hours=4,persistence.size=10Gi,replicas=6  
 ```
 
 #### Create and Run Cache Pod
